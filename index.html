@@ -14,36 +14,87 @@
 <body>
     <!-- Screen 1: Browser Home -->
     <div id="screen-browser-home" class="screen active">
-        <div class="safari-top-space"></div>
-        <div class="browser-content">
-            <div class="favorites-section">
-                <div class="favorites-grid">
-                    <div class="favorite-item">
-                        <div class="favorite-icon"><span>G</span></div>
-                        <span class="favorite-label">Google</span>
+        <div class="safari-page">
+            <div class="safari-content">
+                <div class="favorites-section">
+                    <div class="section-header">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        <span>Favorites</span>
                     </div>
-                    <div class="favorite-item">
-                        <div class="favorite-icon"><span>Y</span></div>
-                        <span class="favorite-label">YouTube</span>
-                    </div>
-                    <div class="favorite-item">
-                        <div class="favorite-icon"><span>A</span></div>
-                        <span class="favorite-label">Amazon</span>
-                    </div>
-                    <div class="favorite-item">
-                        <div class="favorite-icon"><span>W</span></div>
-                        <span class="favorite-label">Wikipedia</span>
+                    <div class="favorites-grid">
+                        <div class="favorite-item">
+                            <div class="favorite-icon apple-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                                </svg>
+                            </div>
+                            <span class="favorite-label">Apple</span>
+                        </div>
+                        <div class="favorite-item">
+                            <div class="favorite-icon google-icon">
+                                <span style="font-size: 24px; font-weight: 500;">G</span>
+                            </div>
+                            <span class="favorite-label">Google</span>
+                        </div>
+                        <div class="favorite-item">
+                            <div class="favorite-icon yahoo-icon">
+                                <span style="font-size: 14px; font-weight: 700; color: white;">yahoo!</span>
+                            </div>
+                            <span class="favorite-label">Yahoo</span>
+                        </div>
+                        <div class="favorite-item">
+                            <div class="favorite-icon bing-icon">
+                                <span style="font-size: 22px; font-weight: 400; color: #00897B;">b</span>
+                            </div>
+                            <span class="favorite-label">Bing</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="safari-bottom-bar">
-            <div class="safari-address-bar" id="address-bar-home">
-                <svg class="safari-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <circle cx="11" cy="11" r="7"></circle>
-                    <path d="m20 20-4-4"></path>
-                </svg>
-                <span class="safari-placeholder">Search or enter website</span>
+            <div class="safari-bottom">
+                <div class="safari-search-bar" id="address-bar-home">
+                    <svg class="safari-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-4-4"></path>
+                    </svg>
+                    <span class="safari-placeholder">Search or enter website name</span>
+                    <svg class="safari-mic-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                </div>
+                <div class="safari-toolbar">
+                    <button class="toolbar-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                            <polyline points="16,6 12,2 8,6"/>
+                            <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <rect x="7" y="7" width="10" height="10" rx="1"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -66,27 +66,42 @@ html, body {
     background: var(--bg);
 }
 
-.safari-top-space {
-    height: env(safe-area-inset-top, 44px);
-    min-height: 44px;
-}
-
-.browser-content {
+.safari-page {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-top: env(safe-area-inset-top, 44px);
+}
+
+.safari-content {
+    flex: 1;
     padding: 0 16px;
+    overflow-y: auto;
 }
 
 .favorites-section {
-    padding-top: 60px;
+    padding-top: 24px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+    padding-left: 4px;
+}
+
+.section-header svg {
+    color: var(--text);
 }
 
 .favorites-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px 16px;
-    padding: 0 8px;
+    gap: 20px 12px;
 }
 
 .favorite-item {
@@ -97,19 +112,31 @@ html, body {
 }
 
 .favorite-icon {
-    width: 54px;
-    height: 54px;
-    border-radius: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
     background: var(--bg-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.favorite-icon span {
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--text-secondary);
+.favorite-icon.apple-icon {
+    background: #000000;
+    color: #ffffff;
+}
+
+.favorite-icon.google-icon {
+    background: #ffffff;
+    color: #4285F4;
+}
+
+.favorite-icon.yahoo-icon {
+    background: #6001D2;
+}
+
+.favorite-icon.bing-icon {
+    background: #ffffff;
 }
 
 .favorite-label {
@@ -117,33 +144,60 @@ html, body {
     color: var(--text-secondary);
 }
 
-/* Safari Bottom Address Bar */
-.safari-bottom-bar {
-    padding: 8px 16px;
-    padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 8px);
+/* Safari Bottom Section */
+.safari-bottom {
     background: var(--toolbar-bg);
     border-top: 0.5px solid var(--separator);
+    padding: 8px 16px;
+    padding-bottom: env(safe-area-inset-bottom, 8px);
 }
 
-.safari-address-bar {
+.safari-search-bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     background: var(--bg-tertiary);
-    border-radius: 10px;
-    padding: 10px 16px;
-    min-height: 44px;
+    border-radius: 12px;
+    padding: 12px 16px;
+    min-height: 48px;
     cursor: pointer;
+    margin-bottom: 8px;
 }
 
-.safari-search-icon {
+.safari-search-icon,
+.safari-mic-icon {
     color: var(--text-tertiary);
     flex-shrink: 0;
 }
 
 .safari-placeholder {
+    flex: 1;
     font-size: 17px;
+    color: var(--text-tertiary);
+    text-align: center;
+}
+
+.safari-toolbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.toolbar-btn {
+    background: none;
+    border: none;
+    color: #007AFF;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar-btn:first-child,
+.toolbar-btn:nth-child(2) {
     color: var(--text-tertiary);
 }
 
