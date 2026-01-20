@@ -1,4 +1,4 @@
-const CACHE_NAME = 'research-tool-v6';
+const CACHE_NAME = 'research-tool-v7';
 const ASSETS = [
     './',
     './index.html',

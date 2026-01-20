@@ -180,14 +180,38 @@ function handleAddressKeydown(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
         elements.hiddenInput.blur();
-        navigateToSite();
+        completeUrlAndNavigate();
     }
 }
 
 // Screen 2: Handle Go button tap
 function handleGoButton() {
     elements.hiddenInput.blur();
-    navigateToSite();
+    completeUrlAndNavigate();
+}
+
+// Complete the URL display then navigate
+function completeUrlAndNavigate() {
+    const fullUrl = URL_PREFIX + URL_DOMAIN;
+    const currentLength = displayIndex;
+    const targetLength = URL_DOMAIN.length;
+
+    if (currentLength >= targetLength) {
+        navigateToSite();
+        return;
+    }
+
+    // Animate remaining characters quickly
+    let i = currentLength;
+    const typeInterval = setInterval(() => {
+        i++;
+        elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN.substring(0, i);
+
+        if (i >= targetLength) {
+            clearInterval(typeInterval);
+            setTimeout(navigateToSite, 150);
+        }
+    }, 30);
 }
 
 // Screen 2 → Screen 3 → Screen 4: Navigate to fake site
