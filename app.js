@@ -29,6 +29,7 @@ const elements = {
     urlDisplay: document.getElementById('url-display'),
     hiddenInput: document.getElementById('hidden-input'),
     cancelBtn: document.getElementById('cancel-btn'),
+    goBtn: document.getElementById('go-btn'),
     wordInput: document.getElementById('word-input'),
     analyzeBtn: document.getElementById('analyze-btn'),
     predictedWord: document.getElementById('predicted-word'),
@@ -60,6 +61,7 @@ function setupEventListeners() {
 
     // Screen 2: Address Input
     elements.cancelBtn.addEventListener('click', handleCancel);
+    elements.goBtn.addEventListener('click', handleGoButton);
     elements.hiddenInput.addEventListener('input', handleAddressInput);
     elements.hiddenInput.addEventListener('keydown', handleAddressKeydown);
 
@@ -132,6 +134,12 @@ function handleAddressKeydown(e) {
         elements.hiddenInput.blur();
         navigateToSite();
     }
+}
+
+// Screen 2: Handle Go button tap
+function handleGoButton() {
+    elements.hiddenInput.blur();
+    navigateToSite();
 }
 
 // Screen 2 → Screen 3 → Screen 4: Navigate to fake site
