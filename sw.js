@@ -1,12 +1,12 @@
-const CACHE_NAME = 'research-tool-v1';
+const CACHE_NAME = 'research-tool-v2';
 const ASSETS = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json',
-    '/icons/icon-192.png',
-    '/icons/icon-512.png'
+    './',
+    './index.html',
+    './styles.css',
+    './app.js',
+    './manifest.json',
+    './icons/icon-192.png',
+    './icons/icon-512.png'
 ];
 
 // Install event - cache all assets
@@ -65,7 +65,7 @@ self.addEventListener('fetch', (event) => {
             })
             .catch(() => {
                 // Offline fallback
-                return caches.match('/index.html');
+                return caches.match('./index.html');
             })
     );
 });
