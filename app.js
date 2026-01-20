@@ -54,7 +54,27 @@ function showScreen(screenName) {
 function init() {
     setupEventListeners();
     setupKeyboardHandling();
+    setupThemeHandling();
     updatePeekIndicator();
+}
+
+// Handle theme color for status bar
+function setupThemeHandling() {
+    const updateTheme = () => {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const themeColor = isDark ? '#000000' : '#ffffff';
+
+        // Update all theme-color meta tags
+        document.querySelectorAll('meta[name="theme-color"]').forEach(meta => {
+            meta.setAttribute('content', themeColor);
+        });
+    };
+
+    // Initial update
+    updateTheme();
+
+    // Listen for changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
 }
 
 // Handle keyboard visibility using Visual Viewport API
