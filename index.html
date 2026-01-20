@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff">
+    <title>Research Tool</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Screen 1: Browser Home -->
+    <div id="screen-browser-home" class="screen active">
+        <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <span class="status-icons">
+                <span class="signal">
+                    <span></span><span></span><span></span><span></span>
+                </span>
+                <span class="wifi">
+                    <span></span><span></span><span></span>
+                </span>
+                <span class="battery">
+                    <span class="battery-level"></span>
+                </span>
+            </span>
+        </div>
+        <div class="browser-content">
+            <div class="address-bar-container">
+                <div class="address-bar inactive" id="address-bar-home">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </span>
+                    <span class="placeholder-text">Search or enter website</span>
+                </div>
+            </div>
+            <div class="favorites-grid">
+                <div class="favorite-item">
+                    <div class="favorite-icon" style="background: #f2f2f7;">
+                        <span style="font-size: 20px; color: #666;">G</span>
+                    </div>
+                    <span class="favorite-label">Google</span>
+                </div>
+                <div class="favorite-item">
+                    <div class="favorite-icon" style="background: #f2f2f7;">
+                        <span style="font-size: 20px; color: #666;">Y</span>
+                    </div>
+                    <span class="favorite-label">YouTube</span>
+                </div>
+                <div class="favorite-item">
+                    <div class="favorite-icon" style="background: #f2f2f7;">
+                        <span style="font-size: 20px; color: #666;">A</span>
+                    </div>
+                    <span class="favorite-label">Amazon</span>
+                </div>
+                <div class="favorite-item">
+                    <div class="favorite-icon" style="background: #f2f2f7;">
+                        <span style="font-size: 20px; color: #666;">W</span>
+                    </div>
+                    <span class="favorite-label">Wikipedia</span>
+                </div>
+            </div>
+        </div>
+        <div class="browser-toolbar">
+            <button class="toolbar-btn" disabled>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m15 18-6-6 6-6"></path>
+                </svg>
+            </button>
+            <button class="toolbar-btn" disabled>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg>
+            </button>
+            <button class="toolbar-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                    <polyline points="16,6 12,2 8,6"></polyline>
+                    <line x1="12" y1="2" x2="12" y2="15"></line>
+                </svg>
+            </button>
+            <button class="toolbar-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </button>
+            <button class="toolbar-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 2: Address Bar Input (Peek) -->
+    <div id="screen-address-input" class="screen">
+        <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <span class="status-icons">
+                <span class="signal">
+                    <span></span><span></span><span></span><span></span>
+                </span>
+                <span class="wifi">
+                    <span></span><span></span><span></span>
+                </span>
+                <span class="battery">
+                    <span class="battery-level"></span>
+                </span>
+            </span>
+        </div>
+        <div class="address-input-header">
+            <button class="cancel-btn" id="cancel-btn">Cancel</button>
+            <div class="address-bar active">
+                <span class="url-display" id="url-display"></span>
+                <span class="cursor"></span>
+            </div>
+        </div>
+        <input type="text" id="hidden-input" class="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <div class="keyboard-spacer"></div>
+    </div>
+
+    <!-- Screen 3: Loading -->
+    <div id="screen-loading" class="screen">
+        <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <span class="status-icons">
+                <span class="signal">
+                    <span></span><span></span><span></span><span></span>
+                </span>
+                <span class="wifi">
+                    <span></span><span></span><span></span>
+                </span>
+                <span class="battery">
+                    <span class="battery-level"></span>
+                </span>
+            </span>
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <div class="loading-address-bar">
+            <span class="lock-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2zm-7-9a5 5 0 0 0-5 5v4h2V7a3 3 0 0 1 6 0v4h2V7a5 5 0 0 0-5-5z"></path>
+                </svg>
+            </span>
+            <span class="loading-url">research.anthropic-lab.ai</span>
+        </div>
+        <div class="loading-content">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Research Tool Landing -->
+    <div id="screen-research" class="screen">
+        <div class="status-bar dark">
+            <span class="status-time">9:41</span>
+            <span class="status-icons">
+                <span class="signal">
+                    <span></span><span></span><span></span><span></span>
+                </span>
+                <span class="wifi">
+                    <span></span><span></span><span></span>
+                </span>
+                <span class="battery">
+                    <span class="battery-level"></span>
+                </span>
+            </span>
+        </div>
+        <div class="research-container">
+            <header class="research-header" id="research-header">
+                <h1>Anthropic Research Lab</h1>
+                <h2>Word Association Study</h2>
+                <div class="research-subheader">Toronto Installation Project | Beta v0.7</div>
+                <div class="peek-indicator" id="peek-indicator"></div>
+            </header>
+            <main class="research-main">
+                <p class="research-description">
+                    This algorithm predicts which word a participant selected based on
+                    semantic distance analysis of an "unrelated" word they provide.
+                </p>
+                <div class="instructions">
+                    <strong>INSTRUCTIONS:</strong><br>
+                    Enter a word that feels completely unrelated to your chosen word,
+                    then submit for analysis.
+                </div>
+                <div class="input-area">
+                    <input type="text" id="word-input" class="word-input" placeholder="Type unrelated word..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button id="analyze-btn" class="analyze-btn">ANALYZE</button>
+                </div>
+            </main>
+            <footer class="research-footer">
+                Developed by Anthropic Labs | Data collected anonymously
+            </footer>
+        </div>
+    </div>
+
+    <!-- Screen 5: Results -->
+    <div id="screen-results" class="screen">
+        <div class="status-bar dark">
+            <span class="status-time">9:41</span>
+            <span class="status-icons">
+                <span class="signal">
+                    <span></span><span></span><span></span><span></span>
+                </span>
+                <span class="wifi">
+                    <span></span><span></span><span></span>
+                </span>
+                <span class="battery">
+                    <span class="battery-level"></span>
+                </span>
+            </span>
+        </div>
+        <div class="research-container">
+            <header class="research-header" id="results-header">
+                <h1>Anthropic Research Lab</h1>
+                <h2>Word Association Study</h2>
+                <div class="research-subheader">Toronto Installation Project | Beta v0.7</div>
+            </header>
+            <main class="results-main">
+                <p class="results-label">Based on semantic analysis:</p>
+                <div class="predicted-word-container">
+                    <div class="predicted-label">Predicted word:</div>
+                    <div class="predicted-word" id="predicted-word">RHYTHM</div>
+                </div>
+                <div class="results-metrics">
+                    <div class="metric">
+                        <span class="metric-label">Confidence:</span>
+                        <span class="metric-value" id="confidence">87%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Semantic distance:</span>
+                        <span class="metric-value" id="semantic-distance">4.2&sigma;</span>
+                    </div>
+                </div>
+                <button id="reset-btn" class="reset-btn">RESET</button>
+            </main>
+            <footer class="research-footer">
+                Developed by Anthropic Labs | Data collected anonymously
+            </footer>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
