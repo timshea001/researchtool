@@ -7,7 +7,7 @@ let headerTapTimer = null;
 
 // Constants
 const URL_PREFIX = 'https://';
-const URL_DOMAIN = 'research.anthropic-lab.ai';
+const URL_DOMAIN = 'semanticlab.ai/study';
 const DEMO_WORDS = [
     'RHYTHM', 'TEXTURE', 'IMPULSE', 'SIGNAL',
     'DRIFT', 'CLARITY', 'ECHO', 'TENSION',
@@ -164,7 +164,7 @@ function handleAddressInput(e) {
     }
 
     // Display URL in chunks based on keystroke count
-    // 1st key: show first chunk (https://research.)
+    // 1st key: show first chunk
     // 2nd key: show full URL
     // 3rd+ keys: URL stays complete, just keep capturing
     const keystrokeCount = peekedWord.length;
@@ -172,7 +172,7 @@ function handleAddressInput(e) {
     if (keystrokeCount === 0) {
         elements.urlDisplay.textContent = '';
     } else if (keystrokeCount === 1) {
-        elements.urlDisplay.textContent = URL_PREFIX + 'research.';
+        elements.urlDisplay.textContent = URL_PREFIX + 'semanticlab.';
     } else {
         elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN;
     }
