@@ -7,7 +7,8 @@ let headerTapCount = 0;
 let headerTapTimer = null;
 
 // Constants
-const TARGET_URL = 'research.anthropic-lab.ai';
+const URL_PREFIX = 'https://';
+const URL_DOMAIN = 'research.anthropic-lab.ai';
 const DEMO_WORDS = [
     'RHYTHM', 'TEXTURE', 'IMPULSE', 'SIGNAL',
     'DRIFT', 'CLARITY', 'ECHO', 'TENSION',
@@ -166,8 +167,12 @@ function handleAddressInput(e) {
         displayIndex = Math.max(0, displayIndex - 1);
     }
 
-    // Display fake URL character by character
-    elements.urlDisplay.textContent = TARGET_URL.substring(0, displayIndex);
+    // Display fake URL: show https:// prefix, then build domain char by char
+    if (displayIndex === 0) {
+        elements.urlDisplay.textContent = '';
+    } else {
+        elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN.substring(0, displayIndex);
+    }
 }
 
 // Screen 2: Handle Enter/Go key
