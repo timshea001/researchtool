@@ -53,7 +53,35 @@ function showScreen(screenName) {
 // Initialize
 function init() {
     setupEventListeners();
+    setupKeyboardHandling();
     updatePeekIndicator();
+}
+
+// Handle keyboard visibility using Visual Viewport API
+function setupKeyboardHandling() {
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', handleViewportResize);
+    }
+}
+
+function handleViewportResize() {
+    const viewport = window.visualViewport;
+    const inputBottom = document.querySelector('.safari-input-bottom');
+
+    if (inputBottom && viewport) {
+        // Calculate keyboard height
+        const keyboardHeight = window.innerHeight - viewport.height;
+
+        if (keyboardHeight > 100) {
+            // Keyboard is open
+            inputBottom.style.paddingBottom = '8px';
+            inputBottom.style.transform = `translateY(-${keyboardHeight}px)`;
+        } else {
+            // Keyboard is closed
+            inputBottom.style.paddingBottom = '';
+            inputBottom.style.transform = '';
+        }
+    }
 }
 
 function setupEventListeners() {
@@ -104,8 +132,18 @@ function handleAddressBarClick() {
 
 // Screen 2: Cancel button
 function handleCancel() {
-    showScreen('browserHome');
     elements.hiddenInput.blur();
+    resetInputBarPosition();
+    showScreen('browserHome');
+}
+
+// Reset input bar position
+function resetInputBarPosition() {
+    const inputBottom = document.querySelector('.safari-input-bottom');
+    if (inputBottom) {
+        inputBottom.style.transform = '';
+        inputBottom.style.paddingBottom = '';
+    }
 }
 
 // Screen 2: Focus hidden input (for keyboard)
@@ -149,6 +187,10 @@ function handleGoButton() {
 
 // Screen 2 → Screen 3 → Screen 4: Navigate to fake site
 function navigateToSite() {
+    // Reset input bar and blur
+    elements.hiddenInput.blur();
+    resetInputBarPosition();
+
     // Update peek indicator
     updatePeekIndicator();
 
