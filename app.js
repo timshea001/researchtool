@@ -1,7 +1,6 @@
 // State Management
 let peekedWord = '';
 let demoCount = 0;
-let displayIndex = 0;
 let usedDemoWords = [];
 let headerTapCount = 0;
 let headerTapTimer = null;
@@ -126,7 +125,6 @@ function handleAddressBarClick() {
 
     showScreen('addressInput');
     peekedWord = '';
-    displayIndex = 0;
     elements.urlDisplay.textContent = '';
     elements.hiddenInput.value = '';
 }
@@ -160,18 +158,23 @@ function handleAddressInput(e) {
     if (inputValue.length > peekedWord.length) {
         const newChar = inputValue[inputValue.length - 1];
         peekedWord += newChar;
-        displayIndex++;
     } else if (inputValue.length < peekedWord.length) {
         // Handle backspace
         peekedWord = peekedWord.slice(0, -1);
-        displayIndex = Math.max(0, displayIndex - 1);
     }
 
-    // Display fake URL: show https:// prefix, then build domain char by char
-    if (displayIndex === 0) {
+    // Display URL in chunks based on keystroke count
+    // 1st key: show first chunk (https://research.)
+    // 2nd key: show full URL
+    // 3rd+ keys: URL stays complete, just keep capturing
+    const keystrokeCount = peekedWord.length;
+
+    if (keystrokeCount === 0) {
         elements.urlDisplay.textContent = '';
+    } else if (keystrokeCount === 1) {
+        elements.urlDisplay.textContent = URL_PREFIX + 'research.';
     } else {
-        elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN.substring(0, displayIndex);
+        elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN;
     }
 }
 
@@ -180,38 +183,17 @@ function handleAddressKeydown(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
         elements.hiddenInput.blur();
-        completeUrlAndNavigate();
+        elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN;
+        setTimeout(navigateToSite, 100);
     }
 }
 
 // Screen 2: Handle Go button tap
 function handleGoButton() {
     elements.hiddenInput.blur();
-    completeUrlAndNavigate();
-}
-
-// Complete the URL display then navigate
-function completeUrlAndNavigate() {
-    const fullUrl = URL_PREFIX + URL_DOMAIN;
-    const currentLength = displayIndex;
-    const targetLength = URL_DOMAIN.length;
-
-    if (currentLength >= targetLength) {
-        navigateToSite();
-        return;
-    }
-
-    // Animate remaining characters quickly
-    let i = currentLength;
-    const typeInterval = setInterval(() => {
-        i++;
-        elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN.substring(0, i);
-
-        if (i >= targetLength) {
-            clearInterval(typeInterval);
-            setTimeout(navigateToSite, 150);
-        }
-    }, 30);
+    // Ensure full URL is shown before navigating
+    elements.urlDisplay.textContent = URL_PREFIX + URL_DOMAIN;
+    setTimeout(navigateToSite, 100);
 }
 
 // Screen 2 → Screen 3 → Screen 4: Navigate to fake site
@@ -321,7 +303,6 @@ function handleSoftReset() {
 function handleHardReset() {
     peekedWord = '';
     demoCount = 0;
-    displayIndex = 0;
     usedDemoWords = [];
     updatePeekIndicator();
     showScreen('browserHome');
