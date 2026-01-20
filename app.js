@@ -28,6 +28,7 @@ const elements = {
     addressBarHome: document.getElementById('address-bar-home'),
     urlDisplay: document.getElementById('url-display'),
     hiddenInput: document.getElementById('hidden-input'),
+    inputBarTap: document.getElementById('input-bar-tap'),
     cancelBtn: document.getElementById('cancel-btn'),
     goBtn: document.getElementById('go-btn'),
     wordInput: document.getElementById('word-input'),
@@ -62,6 +63,7 @@ function setupEventListeners() {
     // Screen 2: Address Input
     elements.cancelBtn.addEventListener('click', handleCancel);
     elements.goBtn.addEventListener('click', handleGoButton);
+    elements.inputBarTap.addEventListener('click', focusHiddenInput);
     elements.hiddenInput.addEventListener('input', handleAddressInput);
     elements.hiddenInput.addEventListener('keydown', handleAddressKeydown);
 
@@ -90,22 +92,25 @@ function setupEventListeners() {
 
 // Screen 1 → Screen 2: Address bar clicked
 function handleAddressBarClick() {
+    // Focus FIRST (must be synchronous with user tap for iOS keyboard)
+    elements.hiddenInput.focus();
+
     showScreen('addressInput');
     peekedWord = '';
     displayIndex = 0;
     elements.urlDisplay.textContent = '';
     elements.hiddenInput.value = '';
-
-    // Focus hidden input to trigger keyboard
-    setTimeout(() => {
-        elements.hiddenInput.focus();
-    }, 100);
 }
 
 // Screen 2: Cancel button
 function handleCancel() {
     showScreen('browserHome');
     elements.hiddenInput.blur();
+}
+
+// Screen 2: Focus hidden input (for keyboard)
+function focusHiddenInput() {
+    elements.hiddenInput.focus();
 }
 
 // Screen 2: Handle typing in address bar (peek mechanism)

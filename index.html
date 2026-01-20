@@ -50,16 +50,18 @@
 
     <!-- Screen 2: Address Bar Input (Peek) -->
     <div id="screen-address-input" class="screen">
-        <div class="safari-input-header">
-            <button class="safari-cancel-btn" id="cancel-btn">Cancel</button>
-            <div class="safari-input-bar">
-                <span class="url-display" id="url-display"></span>
-                <span class="cursor"></span>
+        <div class="safari-input-spacer"></div>
+        <div class="safari-input-bottom">
+            <div class="safari-input-row">
+                <button class="safari-cancel-btn" id="cancel-btn">Cancel</button>
+                <div class="safari-input-bar" id="input-bar-tap">
+                    <span class="url-display" id="url-display"></span>
+                    <span class="cursor"></span>
+                </div>
+                <button class="safari-go-btn" id="go-btn">Go</button>
             </div>
-            <button class="safari-go-btn" id="go-btn">Go</button>
         </div>
-        <input type="text" id="hidden-input" class="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-        <div class="keyboard-spacer"></div>
+        <input type="text" id="hidden-input" class="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go">
     </div>
 
     <!-- Screen 3: Loading -->
